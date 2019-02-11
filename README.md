@@ -3,10 +3,11 @@
 Get graphs such as the ones presented by
 * http://hpc2010.hpclatam.org/papers/39jaiio-hpc-10.pdf
 
-#TLDR
+# TLDR
+
 ```
 source setup.sh
-cd sparce-matrices
+cd sparse-matrices
 $PIN_ROOT/pin -t $PIN_ROOT/source/tools/SimpleExamples/obj-intel64/pinatrace.so -- ./main -f den -a tests/matrices/64x64_2nz_01.mtx -b tests/matrices/64x64_2nz_02.mtx
 cat pinatrace.out| sed -e '1,3d' | awk -v OFS=' ' '{print $2 " " $3 " " $4}' | sed -e 's/\(0x\)[^(1-9a-f)]*\([1-9a-f]\)/\1\2/' | sed '$ d' > memtrace.out
 $DINERO_ROOT/dineroIV -l1-isize 16k -l1-dsize 8192 -l1-ibsize 32 -l1-dbsize 16 < memtrace.out
